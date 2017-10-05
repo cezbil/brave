@@ -1,7 +1,7 @@
 <?php
-include_once 'dbConfig.php';
-include_once 'User.php';
-include_once 'Entry.php';
+include_once '/../classes/dbConfig.php';
+include_once '/../classes/User.php';
+include_once '/../classes/Entry.php';
 
 $conn = new dbConfig();
 $user = new User($conn->getConn());
@@ -10,7 +10,7 @@ $id = $_GET['edit_id'];
 $en = $entry->getEntry($id);
 if(!isset($_SESSION['user']))
 {
-    $user->redirect('index.php');
+    $user->redirect('../index.php');
 }
 if(isset($_POST['btn-edit']))
 {
@@ -20,7 +20,7 @@ if(isset($_POST['btn-edit']))
 
     if($entry->update($id,$title,$text))
     {
-        $user->redirect('index.php');
+        $user->redirect('../index.php');
     }
     else
     {
@@ -31,12 +31,13 @@ if(isset($_POST['btn-edit']))
 ?>
 
 
-<?php include_once 'header.php'; ?>
+<?php include_once '/../layouts/header.php'; ?>
+<?php include_once '/../layouts/nav.php'; ?>
 <?php foreach ($en as $row) {
 ?>
 
+<div style="margin-top: 35px" class="container">
 
-<div class="container">
     <div class="col-sm-4 col-sm-offset-4">
         <form id="editEntry" method="post">
             <h2 >Edit Entry</h2>
@@ -53,4 +54,4 @@ if(isset($_POST['btn-edit']))
     </div>
 </div>
 
-<?php include_once 'footer.php'; ?>
+<?php include_once '/../layouts/footer.php'; ?>

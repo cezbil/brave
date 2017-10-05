@@ -24,6 +24,7 @@ class User
                 "password" => $passwordHashed,
                 "email" => $email
             ));
+            return true;
         } catch (PDOException $e){
             echo $e->getMessage();
 

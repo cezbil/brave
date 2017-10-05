@@ -1,6 +1,7 @@
 <?php
-include_once 'dbConfig.php';
-include_once 'User.php';
+include_once '../classes/dbConfig.php';
+include_once '../classes/User.php';
+
 
 $conn = new dbConfig();
 $user = new User($conn->getConn());

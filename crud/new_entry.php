@@ -1,7 +1,8 @@
 <?php
-include_once 'dbConfig.php';
-include_once 'User.php';
-include_once 'Entry.php';
+include_once '/../classes/dbConfig.php';
+include_once '/../classes/User.php';
+include_once '/../classes/Entry.php';
+
 
 $conn = new dbConfig();
 $user = new User($conn->getConn());
@@ -9,7 +10,7 @@ $entry = new Entry($conn->getConn());
 
 if(!isset($_SESSION['user']))
 {
-    $user->redirect('index.php');
+    $user->redirect('../index.php');
 }
 if(isset($_POST['btn-add']))
 {
@@ -19,7 +20,7 @@ if(isset($_POST['btn-add']))
 
     if($entry->insert($title,$text,$ownerId))
     {
-        $user->redirect('index.php');
+        $user->redirect('../index.php');
     }
     else
     {
@@ -30,10 +31,11 @@ if(isset($_POST['btn-add']))
 ?>
 
 
-<?php include_once 'header.php'; ?>
+<?php include_once '/../layouts/header.php'; ?>
+<?php include_once '/../layouts/nav.php'; ?>
 
 
-<div class="container">
+<div style="margin-top: 35px" class="container">
     <div class="col-sm-4 col-sm-offset-4">
         <form id="newEntry" method="post">
             <h2 >New Entry</h2>
@@ -50,4 +52,4 @@ if(isset($_POST['btn-add']))
     </div>
 </div> <!-- /container -->
 
-<?php include_once 'footer.php'; ?>
+<?php include_once '/../layouts/footer.php'; ?>

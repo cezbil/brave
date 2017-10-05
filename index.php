@@ -1,12 +1,13 @@
 <?php
-include_once 'User.php';
-include_once 'dbConfig.php';
-include_once 'Entry.php';
+include_once 'classes/dbConfig.php';
+include_once 'classes/User.php';
+include_once 'classes/Entry.php';
+
 $conn = new dbConfig();
 $user = new User($conn);
 if(!isset($_SESSION['user']))
 {
-    $user->redirect('login.php');
+    $user->redirect('authentication/login.php');
 }
 
 
@@ -15,21 +16,9 @@ $entry = new Entry($conn->getConn());
 $entries = $entry->getEntries($_SESSION['user']);
 
 ?>
-<?php include_once 'header.php'; ?>
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="<?php echo "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; ?>">Brave</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="<?php echo "http://$_SERVER[HTTP_HOST]/brave/new_entry.php"; ?>">New Entry</a></li>
-                <li><a href="logout.php"><i class="glyphicon glyphicon-log-out"></i> logout</a></li>
-            </ul>
+<?php include_once 'layouts/header.php'; ?>
+<?php include_once 'layouts/nav.php'; ?>
 
-        </div>
-    </div>
-</nav>
 <div style="margin-top: 35px" class="container">
     <h2 class="sub-header">Entries</h2>
     <div class="table-responsive">
@@ -58,20 +47,20 @@ $entries = $entry->getEntries($_SESSION['user']);
                 <td>
 
 
-                        <a href="<?php echo "http://$_SERVER[HTTP_HOST]/brave/edit.php?edit_id=" . $row['id']?>" class="btn btn-primary a-btn-slide-text">
+                        <a href="<?php echo "http://$_SERVER[HTTP_HOST]/brave/crud/edit.php?edit_id=" . $row['id']?>" class="btn btn-primary a-btn-slide-text">
                             <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                             <span><strong>Edit</strong></span>
                         </a>
                 </td>
                      <td>
-                        <a href="<?php echo "http://$_SERVER[HTTP_HOST]/brave/view.php?view_id=" . $row['id']?>" class="btn btn-primary a-btn-slide-text">
+                        <a href="<?php echo "http://$_SERVER[HTTP_HOST]/brave/crud/view.php?view_id=" . $row['id']?>" class="btn btn-primary a-btn-slide-text">
                             <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
                             <span><strong>View</strong></span>
                         </a>
                      </td>
                      <td>
 
-                        <a href="<?php echo "http://$_SERVER[HTTP_HOST]/brave/delete.php?delete_id=" . $row['id']?>" class="btn btn-danger a-btn-slide-text">
+                        <a href="<?php echo "http://$_SERVER[HTTP_HOST]/brave/crud/delete.php?delete_id=" . $row['id']?>" class="btn btn-danger a-btn-slide-text">
                             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                             <span><strong>Delete</strong></span>
                         </a>
@@ -85,5 +74,5 @@ $entries = $entry->getEntries($_SESSION['user']);
 </div>
 
 </div>
-<?php include_once 'footer.php'; ?>
+<?php include_once 'layouts/footer.php'; ?>
 
