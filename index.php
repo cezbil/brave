@@ -53,13 +53,12 @@ $entries = $entry->getEntries($_SESSION['user']);
 
                 <td>
 
-                    <div class="row">
 
-                        <a href="#" class="btn btn-primary a-btn-slide-text">
+                        <a href="<?php echo "http://$_SERVER[HTTP_HOST]/brave/edit.php/edit_id=" . $row['id']?>" class="btn btn-primary a-btn-slide-text">
                             <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                             <span><strong>Edit</strong></span>
                         </a>
-                        <a href="<?php echo "http://$_SERVER[HTTP_HOST]/brave/delete.php/delete_id=" . $row['id']?>" class="btn btn-primary a-btn-slide-text">
+                        <a href="<?php echo "http://$_SERVER[HTTP_HOST]/brave/view.php/view_id=" . $row['id']?>" class="btn btn-primary a-btn-slide-text">
                             <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
                             <span><strong>View</strong></span>
                         </a>
@@ -67,7 +66,6 @@ $entries = $entry->getEntries($_SESSION['user']);
                             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                             <span><strong>Delete</strong></span>
                         </a>
-                    </div>
                 </td>
 
             </tr>
