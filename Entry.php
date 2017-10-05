@@ -23,6 +23,7 @@ class Entry
                 "entry_text" => $entry_text,
                 "ownerId" => $ownerId
             ));
+            return true;
         } catch (PDOException $e){
             echo $e->getMessage();
 
@@ -42,14 +43,14 @@ class Entry
     }
 
     public function getEntries($ownerId){
-            $statement =  $this->conn->prepare(
-                '
+        $statement =  $this->conn->prepare(
+            '
                         SELECT * FROM entries WHERE ownerId=:ownerId
 ');
-            $statement->execute(array(
-                "ownerId" => $ownerId
-            ));
-            return $statement->fetchAll();
+        $statement->execute(array(
+            "ownerId" => $ownerId
+        ));
+        return $statement->fetchAll();
 
 
     }
