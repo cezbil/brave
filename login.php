@@ -42,6 +42,6 @@ if(isset($_POST['btn-login']))
         <button name="btn-login" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
     </form>
     </div>
-</div> <!-- /container -->
+</div>
 
 <?php include_once 'footer.php'; ?>

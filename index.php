@@ -39,29 +39,38 @@ $entries = $entry->getEntries($_SESSION['user']);
                 <th>#</th>
                 <th>Title</th>
                 <th>Text</th>
-                <th>Edit/Delete</th>
+                <th colspan="3" align="center">Edit/Delete</th>
+
             </tr>
             </thead>
             <tbody>
             <?php
+            $i = 0;
+
             foreach ($entries as $row){
+                $i++;
              ?>
             <tr>
-                <td><?php echo htmlspecialchars($row['id'],ENT_QUOTES | ENT_HTML401,'UTF-8');?></td>
+                <td><?php echo $i ?></td>
                 <td><?php echo htmlspecialchars($row['title'],ENT_QUOTES | ENT_HTML401,'UTF-8');?></td>
                 <td><?php echo htmlspecialchars($row['entry_text'],ENT_QUOTES | ENT_HTML401,'UTF-8');?></td>
 
                 <td>
 
 
-                        <a href="<?php echo "http://$_SERVER[HTTP_HOST]/brave/edit.php/edit_id=" . $row['id']?>" class="btn btn-primary a-btn-slide-text">
+                        <a href="<?php echo "http://$_SERVER[HTTP_HOST]/brave/edit.php?edit_id=" . $row['id']?>" class="btn btn-primary a-btn-slide-text">
                             <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                             <span><strong>Edit</strong></span>
                         </a>
-                        <a href="<?php echo "http://$_SERVER[HTTP_HOST]/brave/view.php/view_id=" . $row['id']?>" class="btn btn-primary a-btn-slide-text">
+                </td>
+                     <td>
+                        <a href="<?php echo "http://$_SERVER[HTTP_HOST]/brave/view.php?view_id=" . $row['id']?>" class="btn btn-primary a-btn-slide-text">
                             <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
                             <span><strong>View</strong></span>
                         </a>
+                     </td>
+                     <td>
+
                         <a href="<?php echo "http://$_SERVER[HTTP_HOST]/brave/delete.php?delete_id=" . $row['id']?>" class="btn btn-danger a-btn-slide-text">
                             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                             <span><strong>Delete</strong></span>

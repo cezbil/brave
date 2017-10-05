@@ -52,7 +52,7 @@ class User
                 }
             }
         } catch (PDOException $e){
-
+            echo $e->getMessage();
         }
 
 
